@@ -133,7 +133,7 @@ public int hashCode() {
 | `@Id` | Identifica o campo que representa a **chave primária** da entidade. |
 | `@GeneratedValue(strategy = GenerationType.IDENTITY)` | Define a estratégia de geração automática do ID (ex.: `IDENTITY`, `AUTO`, `SEQUENCE`, `TABLE`). |
 
-### 🔗 Anotações de COLUNAS
+### 📖 Anotações de COLUNAS
 | Anotação | Descrição |
 |----------|-----------|
 | `@Column(nullable = false)` | Personaliza uma coluna: nome, obrigatoriedade (`nullable`), unicidade (`unique`), tamanho (`length`), etc. |
