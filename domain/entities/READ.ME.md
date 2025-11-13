@@ -119,50 +119,49 @@ public int hashCode() {
 }
 ```
 
-#  Mapeamento Das Entidades
+## :open_book: Mapeamento das Entidades
 
-🔗 Anotações de classe
+### 🔗 Anotações de classe  
 | Anotação | Descrição |
-|-----------|------------|
-| `@Entity` | Indica que a classe é uma entidade gerenciada pelo **JPA (Java Persistence API)**. |
-| `@Table(name = "nome_tabela")` | Define o nome da tabela associada. Se não especificado, o nome da classe será usado. |
+|----------|-----------|
+| `@Entity` | Marca a classe como entidade gerenciada pelo **JPA (Java Persistence API)**. |
+| `@Table(name = "nome_tabela")` | Define explicitamente o nome da tabela associada. Se omitida, o nome da classe será usado. |
 
-🔗 Anotações de identificação
+### :key: Anotações de identificação  
 | Anotação | Descrição |
-|-----------|------------|
-| `@Id` | Identifica o campo que representa a **chave primária**. |
-| `@GeneratedValue(strategy = GenerationType.IDENTITY)` | Define a estratégia de geração automática do ID (`IDENTITY`, `AUTO`, `SEQUENCE`, `TABLE`). |
+|----------|-----------|
+| `@Id` | Identifica o campo que representa a **chave primária** da entidade. |
+| `@GeneratedValue(strategy = GenerationType.IDENTITY)` | Define a estratégia de geração automática do ID (ex.: `IDENTITY`, `AUTO`, `SEQUENCE`, `TABLE`). |
 
-
-🔗 Anotações de Colunas
+### 🔗 Anotações de colunas  
 | Anotação | Descrição |
-|-----------|------------|
-| `@Column(nullable = false)` | Personaliza o nome e as propriedades de uma coluna (`name=String`, `nullable=T/F`, `unique=T/F`, `length=Int`). |
-| `@Lob` | Armazena dados extensos, geralmente binários (`columnDefinition = BLOB | CLOB`) |
-| `@Transient` | Especifica que este campo não será persistido no banco de dados. |
+|----------|-----------|
+| `@Column(nullable = false)` | Personaliza uma coluna: nome, obrigatoriedade (`nullable`), unicidade (`unique`), tamanho (`length`), etc. |
+| `@Lob` | Indica que o campo será persistido como objeto de grande tamanho (LOB); geralmente usado para BLOBs ou CLOBs. |
+| `@Transient` | Indica que o campo **não será persistido** no banco de dados — apenas na memória da aplicação. |
 
+### :family_man_woman_boy: Anotações de relacionamentos  
+| Anotação | Tipo | Descrição |
+|----------|------|-----------|
+| `@OneToOne` | 1 : 1 | Um registro está ligado exatamente a outro. |
+| `@OneToMany` | 1 : N | Um registro da entidade está ligado a vários de outra entidade. |
+| `@ManyToOne` | N : 1 | Vários registros da entidade fazem referência a um registro de outra entidade. |
+| `@ManyToMany` | N : N | Vários registros de ambas as entidades estão associados entre si. |
+| `@JoinColumn` | — | Define a coluna da chave estrangeira (ex.: `referencedColumnName`, `nullable`, `name`) para mapear o relacionamento. |
 
-🔗 Anotações de Relacionamentos
-|Anotação| Descrição|
-|-----------|------------|
-| ` @OneToOne `| Um registro em uma tabela está ligado a exatamente um registro em outra tabela. |
-| ` @OneToMany `| Um registro está relacionado a vários registros de outra tabela.|
-| ` @ManyToOne `| Vários registros fazem referência a um único registro principal.|
-| ` @ManyToMany `| Múltiplos registros de uma tabela estão associados a múltiplos registros de outra.|
-| ` @JoinColumn `| Define a coluna da chave ESTRANGEIRA (`referencedColumnName= Id_outra_tabela`, `nullable=T/F`).|
-
-🔗 Anotações de Data e Auditoria
+### :pencil: Anotações de data e auditoria  
 | Anotação | Descrição |
-|-----------|------------|
-| `@Temporal` | Controla  o tipo data / hora  em atributos DATE (`TemporalType. DATE|TIME|TIMESTAMP`). |
-| `@CreationTimestamp` | Preenche automaticamente com data e hora atual no momento de  ** CRIAÇÃO **.|
-| `@UpdateTimestamp` | Preenche automaticamente com data e hora atual no momento de  ** ATUALIZAÇÃO **.  |
+|----------|-----------|
+| `@Temporal` | Controla o tipo de dado para atributos de data/hora (`TemporalType.DATE`, `TIME`, `TIMESTAMP`). |
+| `@CreationTimestamp` | Preenche automaticamente com a data/hora da **criação** do registro. |
+| `@UpdateTimestamp` | Preenche automaticamente com a data/hora da **última atualização** do registro. |
 
-🔗 Anotações de Herança
+### 🔗 Anotações de herança  
 | Anotação | Descrição |
-|-----------|------------|
-| `@MappedSuperclass` | Define a classe como Superclasse. Ou seja, um molde para as entidades filhas (não vira uma tabela) |
-| `@Inhertance` | Define como a heraça será mapeada no banco (`strategy = InhertanceTYPE. Joined|Single_Table|Table_per_class`) |
+|----------|-----------|
+| `@MappedSuperclass` | Marca uma classe como superclasse de entidades — não vira uma tabela por si só, mas suas subclasses herdam seus campos. |
+| `@Inheritance(strategy = InheritanceType.*)` | Define a estratégia de mapeamento de herança para entidades (ex.: `JOINED`, `SINGLE_TABLE`, `TABLE_PER_CLASS`). |
+
 
 
 
