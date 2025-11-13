@@ -159,7 +159,7 @@ public int hashCode() {
 ### :crown: Anotações de HERANÇA  
 | Anotação | Descrição |
 |----------|-----------|
-| `@MappedSuperclass` | Marca uma classe como superclasse de entidades — não vira uma tabela por si só, mas suas subclasses herdam seus campos. |
+| `@MappedSuperclass` | Marca uma classe como superclasse de entidades. Não vira uma tabela, mas suas subclasses herdam seus campos. |
 | `@Inheritance(strategy = InheritanceType.*)` | Define a estratégia de mapeamento de herança para entidades (ex.: `JOINED`, `SINGLE_TABLE`, `TABLE_PER_CLASS`). |
 
 
