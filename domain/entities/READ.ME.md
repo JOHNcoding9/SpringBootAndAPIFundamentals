@@ -129,12 +129,14 @@ public int hashCode() {
 
 🔗 Anotações de identificação
 | Anotação | Descrição |
+|-----------|------------|
 | `@Id` | Identifica o campo que representa a **chave primária**. |
 | `@GeneratedValue(strategy = GenerationType.IDENTITY)` | Define a estratégia de geração automática do ID (`IDENTITY`, `AUTO`, `SEQUENCE`, `TABLE`). |
 
 
 🔗 Anotações de Colunas
 | Anotação | Descrição |
+|-----------|------------|
 | `@Column(nullable = false)` | Personaliza o nome e as propriedades de uma coluna (`name=String`, `nullable=T/F`, `unique=T/F`, `length=Int`). |
 | `@Lob` | Armazena dados extensos, geralmente binários (`columnDefinition = BLOB | CLOB`) |
 | `@Transient` | Especifica que este campo não será persistido no banco de dados. |
@@ -142,7 +144,7 @@ public int hashCode() {
 
 🔗 Anotações de Relacionamentos
 |Anotação| Descrição|
-|---------|-------|-----------|
+|-----------|------------|
 | ` @OneToOne `| Um registro em uma tabela está ligado a exatamente um registro em outra tabela. |
 | ` @OneToMany `| Um registro está relacionado a vários registros de outra tabela.|
 | ` @ManyToOne `| Vários registros fazem referência a um único registro principal.|
@@ -151,12 +153,14 @@ public int hashCode() {
 
 🔗 Anotações de Data e Auditoria
 | Anotação | Descrição |
+|-----------|------------|
 | `@Temporal` | Controla  o tipo data / hora  em atributos DATE (`TemporalType. DATE|TIME|TIMESTAMP`). |
 | `@CreationTimestamp` | Preenche automaticamente com data e hora atual no momento de  ** CRIAÇÃO **.|
 | `@UpdateTimestamp` | Preenche automaticamente com data e hora atual no momento de  ** ATUALIZAÇÃO **.  |
 
 🔗 Anotações de Herança
 | Anotação | Descrição |
+|-----------|------------|
 | `@MappedSuperclass` | Define a classe como Superclasse. Ou seja, um molde para as entidades filhas (não vira uma tabela) |
 | `@Inhertance` | Define como a heraça será mapeada no banco (`strategy = InhertanceTYPE. Joined|Single_Table|Table_per_class`) |
 
