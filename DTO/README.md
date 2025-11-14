@@ -4,7 +4,7 @@ Data Transfer Object
 ## 🎯 Função principal
 
 A camada **DTO** é um objeto simples, geralmente composto apenas por atributos e métodos de acesso, sendo  utilizados para **transportar dados entre camadas**. O transporte é feito **sem utilizar a lógica de negócio**
-e serve como ** uma interface de comunicação segura e enxuta **.
+e serve como **uma interface de comunicação segura e enxuta**.
 
 São separados em: <br>
 ⚫ RequestDTO <br>
@@ -61,4 +61,17 @@ if (usuarioRepository.existsByEmail(dto.getEmail()) {
 🎯 Objetivos: <br>
 ⚫ Garantir integridade referencial e unicidade no banco real da aplicação (Postgre, MySQL ...) <br>
 ⚫ Uso  de constraints do banco real: UNIQUE, FOREIGN KEY, PRIMARY KEY ...
+
+```SQL
+CREATE TABLE USUARIO (
+id_usuario SERIAL NOT NULL,
+nome VARCHAR(100) NOT NULL,
+email_hash VARCHAR(320) UNIQUE NOT NULL,
+senha_hash VARCHAR(100) NOT NULL,
+data_criacao TIMESTAMP NOT NULL DEFAULT NOW(),
+PRIMARY KEY (id_usuario)
+);
+```
+
+
 
