@@ -95,11 +95,11 @@ void atualizarStatus(@Param("id") Long id, @Param("status") StatusEnum status);
 ```
 | Anotação | Descrição |
 |----------|-----------|
-| `@Lock` | Controle de concorrência em nível SQL (pessimista/otimista).|
-| `@EntityGraph` | Define carregamento antecipado (JOIN FETCH) sem alterar a entidade.|
+| `@Lock` | Controle de concorrência em nível SQL (pessimista/otimista). (“Não deixa outro pegar enquanto estou mexendo”)|
+| `@EntityGraph` | Define carregamento antecipado (JOIN FETCH) sem alterar a entidade. (“Carrega junto para evitar viagens extras ao banco”)|
 | `@Procedure` | Permite chamar Stored Procedures do banco de dados diretamente pelo Repository.|
-| `@QueryHints` | Passar dicas específicas para o provedor JPA (como Hibernate) alterar comportamento da query.|
-| `@RestResource` |Customização de endpoints REST gerados automaticamente(Utilizada apenas quando usa Spring Data REST.)|
+| `@QueryHints` | Passar dicas específicas para o provedor JPA (como Hibernate) alterar comportamento da query. (“Passar pequenas instruções ao Hibernate”)|
+| `@RestResource` | Customização de endpoints REST gerados automaticamente(Utilizada apenas quando usa Spring Data REST.)|
 
 
 
