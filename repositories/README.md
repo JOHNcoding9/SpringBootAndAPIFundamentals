@@ -93,6 +93,7 @@ List<Aluno> buscarPorNome(@Param("nome") String nome);
 void atualizarStatus(@Param("id") Long id, @Param("status") StatusEnum status);
 
 ```
+| Anotação | Descrição |
 |----------|-----------|
 | `@Lock` | Controle de concorrência em nível SQL (pessimista/otimista).|
 | `@EntityGraph` | Define carregamento antecipado (JOIN FETCH) sem alterar a entidade.|
