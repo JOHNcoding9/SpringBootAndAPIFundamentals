@@ -26,9 +26,9 @@ O que acontece no código acima? <br>
 🔵 O método findByNome() segue o padrão findBy{atributo}(). <br>
 🔵 O Spring gera a implementação em tempo de execução, sem que você precise escrever o código SQL da consulta. <br>
 
--- Lógica de construção de métodos personalizados --
-Spring Data Jpa permite criar métodos **baseados no nome**, sem precisar escrever a query.
-Ele **interpreta o nome dado ao método e gera uma consulta JPQL automaticamente por baixo dos panos.**
+-- Lógica de construção de métodos personalizados -- <br>
+Spring Data Jpa permite criar métodos **baseados no nome**, sem precisar escrever a query. <br>
+Ele **interpreta o nome dado ao método e gera uma consulta JPQL automaticamente por baixo dos panos.** <br>
 (findByNome() , findByEmailAndStatus() ...)
 
 O Spring Data cria métodos automaticamente, desde que você siga o padrão de nome:  <br>
