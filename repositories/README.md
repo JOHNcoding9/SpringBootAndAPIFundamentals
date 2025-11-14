@@ -6,11 +6,11 @@ A camada **Repository** abstrai o acesso de dados. Ele atua como uma **ponte/tú
 manipular entidades sem se preocupar com os detalhes de persistência.
 Ou seja, A camada oculta todo o comportamento necessário para que uma entidade seja salva, consultada, atualizada e removida, **sem que a camada de serviço precise conhecer os mecanismos internos do banco**.
 
-##  Papel do repository na arquitetura:
-⚫ isola a lógica de acesso aos dados
-⚫ facilita testes de manutenção
-⚫ promove reutilização de código
-⚫ permite trocar a fonte de dados sem alterar a aplicação
+##  Papel do repository na arquitetura: <br>
+⚫ isola a lógica de acesso aos dados <br>
+⚫ facilita testes de manutenção <br>
+⚫ promove reutilização de código <br>
+⚫ permite trocar a fonte de dados sem alterar a aplicação <br>
 ---
 # criando repository:
 ```java
@@ -20,20 +20,20 @@ public interface AlunoRepository extends JpaRepository <Aluno,Long> {
 }
 ```
 
-O que acontece no código acima?
-🔵 JpaRepository fornece seus métodos automáticos à interface Aluno.
-🔵 O método findByNome() segue o padrão findBy{atributo}().
-🔵 O Spring gera a implementação em tempo de execução, sem que você precise escrever o código SQL da consulta.
+O que acontece no código acima? <br>
+🔵 JpaRepository fornece seus métodos automáticos à interface Aluno. <br>
+🔵 O método findByNome() segue o padrão findBy{atributo}(). <br>
+🔵 O Spring gera a implementação em tempo de execução, sem que você precise escrever o código SQL da consulta. <br>
 
 
 
-O Spring Data cria métodos automaticamente, desde que você siga o padrão de nome: 
-⚙️ Save()
-⚙️ findBy{atributo}()
-⚙️ findAll()
-⚙️ delete()
-⚙️ count()
-⚙️ existsBy{atributo}()
+O Spring Data cria métodos automaticamente, desde que você siga o padrão de nome:  <br>
+⚙️ Save() <br>
+⚙️ findBy{atributo}() <br>
+⚙️ findAll() <br>
+⚙️ delete() <br>
+⚙️ count() <br>
+⚙️ existsBy{atributo}() <br>
 
 Qualquer combinação válida com find, exists, count, delete, remove, get + By + campos da entidade será gerada, com suporte a:
 | Operador lógico |
