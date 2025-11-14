@@ -10,7 +10,7 @@ São separados em: <br>
 ⚫ RequestDTO <br>
 ⚫ ResponseDTO  <br>
 
-Em resumo, DTOs basicamente filtram as Entidades antes de transportá-las às outras camadas da aplicação.
+Em resumo, DTOs de response e request basicamente filtram as Entidades antes de transportá-las às outras camadas da aplicação.
 
 **Por que usar DTOs?** <br>
 📥 Encapsulamento de dados: Evita expôr diretamnte entidades do banco de dados. <br>
@@ -36,7 +36,7 @@ ferramentas: Bean Validation,
 ```java
 
 public class UsuarioDTO {
- @NotNull (message = "Nome é obrigatório")
+ @NotBlank (message = "Nome é obrigatório")
  @Size (min = 3, max = 50)
  private String nome;
 
@@ -79,9 +79,9 @@ PRIMARY KEY (id_usuario)
 ### 👻 Validações de PRESENÇA E NULIDADE
 | Anotação | Descrição |
 |----------|-----------|
-| `@NotNull` | Garante que o campo **não seja null** |
-| `@NotEmpty` | Garante que o campo **não seja vazio "" e nem null** |
-| `@NotBlank` | Garante que o campo **não seja vazio "" e nem apenas espaços em branco** |
+| `@NotNull` | Garante que o campo **não seja null** (Valida apenas que o valor não pode ser null). |
+| `@NotEmpty` | Garante que o campo **não seja vazio "" e nem null**|
+| `@NotBlank` | Garante que o campo **não seja vazio "", não seja nulo e nem apenas espaços em branco**  (Aplicável somente em Strings)|
 
 ### 🐋 validações de TAMANHO E VALOR
 | Anotação | Descrição |
@@ -101,8 +101,16 @@ PRIMARY KEY (id_usuario)
 | Anotação | Descrição |
 |----------|-----------|
 | `@Email` | Garante que o campo seja um email válido |
-| `@Pattern(regexp="regex")` | Valida o campo com expressão regular|
-| `@Digits(integer = x, fraction = y)` | Valida números com casas decimais específicas|
+| `@Pattern(regexp="regex")` | Valida uma String usando uma expressão regular (regex)|
+```java
+@Pattern(regexp = "\\d{11}", message = "CPF deve ter 11 dígitos")
+private String cpf;  //Valida a formatação, não serve para conferir se o CPF é verdadeiro!
+```
+| `@Digits(integer = x, fraction = y)` | Valida números que possuem um limite exato de casas inteiras e casas decimais|
+```java
+@Digits(integer = 5, fraction = 2)
+private BigDecimal salario;
+```
 
 ### ⏲️Validações de DATA
 | Anotação | Descrição |
@@ -113,7 +121,7 @@ PRIMARY KEY (id_usuario)
 | `@FutureOrPresent` | Garante que a data esteja no **futuro ou presente**|
 
 
-### 0️⃣  Validações de BOOLEANS E OBJETOS ANINHADOS
+### 0️⃣|1️⃣  Validações de BOOLEANS E OBJETOS ANINHADOS
 | Anotação | Descrição |
 |----------|-----------|
 | `@AssertTrue` | Exige que o campo seja **True** |
