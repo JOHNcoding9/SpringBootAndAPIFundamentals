@@ -61,7 +61,7 @@ Qualquer combinação válida com find, exists, count, delete, remove, get + By 
 ## Consultas personalizadas
 
 Além das consultas por convenção, é possível definir consultas personalizadas com a anotação **@Query**.
-Exemplo em JPQL:
+Exemplo em JPQL (usa entidades e atributos, não tabelas; independente do banco; JPA traduz para SQL interno.):
 ```jpql
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno,Long> {
@@ -70,50 +70,36 @@ public interface AlunoRepository extends JpaRepository<Aluno,Long> {
 }
 ```
 
-
+Também é possível usar **SQL nativo** (nativeQuery = True). (usa tabela real, coluna real; Dependente do banco; Não passa por tradução.)
+```jpql
+@Query(value = "SELECT * FROM aluno WHERE nome = :nome", nativeQuery = true)
+List<Aluno> buscarPorNome(@Param("nome") String nome);
+```
 
 # :open_book: Mapeamento de Repository
 
-### 🔗 Anotações de CLASSE 
+### 🔗 Anotações
 | Anotação | Descrição |
 |----------|-----------|
-| `@Entity` | Marca a classe como entidade gerenciada pelo **JPA (Java Persistence API)**. |
-| `@Table(name = "nome_tabela")` | Define explicitamente o nome da tabela associada. Se omitida, o nome da classe será usado. |
+| `@Repository` | Marca o componente de persistência. |
+| `@Query` | Define uma consulta JPQL ou SQL nativo diretamente no método do repository.|
+| `@Param` | Especifica os parâmetros usados na @Query. |
+| `@Modifying` | Obrigatória para métodos que fazem UPDATE, DELETE ou INSERT na base de dados real via @Query (Sempre precisa de @Transactional)|
+| `@Transactional` | Garante que operações sejam executadas dentro de uma transação segura. **(Realiza execução atômica de operações)** |
+```java
+@Modifying
+@Transactional
+@Query("UPDATE Usuario u SET u.status = :status WHERE u.id = :id")
+void atualizarStatus(@Param("id") Long id, @Param("status") StatusEnum status);
 
-### :key: Anotações de IDENTIFICAÇÃO 
-| Anotação | Descrição |
+```
 |----------|-----------|
-| `@Id` | Identifica o campo que representa a **chave primária** da entidade. |
-| `@GeneratedValue(strategy = GenerationType.IDENTITY)` | Define a estratégia de geração automática do ID (ex.: `IDENTITY`, `AUTO`, `SEQUENCE`, `TABLE`). |
+| `@Lock` | Controle de concorrência em nível SQL (pessimista/otimista).|
+| `@EntityGraph` | Define carregamento antecipado (JOIN FETCH) sem alterar a entidade.|
+| `@Procedure` | Permite chamar Stored Procedures do banco de dados diretamente pelo Repository.|
+| `@QueryHints` | Passar dicas específicas para o provedor JPA (como Hibernate) alterar comportamento da query.|
+| `@RestResource` |Customização de endpoints REST gerados automaticamente(Utilizada apenas quando usa Spring Data REST.)|
 
-### 📊 Anotações de COLUNAS
-| Anotação | Descrição |
-|----------|-----------|
-| `@Column(nullable = false)` | Personaliza uma coluna: nome, obrigatoriedade (`nullable`), unicidade (`unique`), tamanho (`length`), etc. |
-| `@Lob` | Indica que o campo será persistido como objeto de grande tamanho (LOB); geralmente usado para BLOBs ou CLOBs. |
-| `@Transient` | Indica que o campo **não será persistido** no banco de dados — apenas na memória da aplicação. |
-
-### :family_man_woman_boy: Anotações de RELACIONAMENTOS
-| Anotação | Tipo | Descrição |
-|----------|------|-----------|
-| `@OneToOne` | 1 : 1 | Um registro está ligado exatamente a outro. |
-| `@OneToMany` | 1 : N | Um registro da entidade está ligado a vários de outra entidade. |
-| `@ManyToOne` | N : 1 | Vários registros da entidade fazem referência a um registro de outra entidade. |
-| `@ManyToMany` | N : N | Vários registros de ambas as entidades estão associados entre si. |
-| `@JoinColumn` | — | Define a coluna da chave estrangeira (ex.: `referencedColumnName`, `nullable`, `name`) para mapear o relacionamento. |
-
-### :pencil: Anotações de DATA E AUDITORIA
-| Anotação | Descrição |
-|----------|-----------|
-| `@Temporal` | Controla o tipo de dado para atributos de data/hora (`TemporalType.DATE`, `TIME`, `TIMESTAMP`). |
-| `@CreationTimestamp` | Preenche automaticamente com a data/hora da **criação** do registro. |
-| `@UpdateTimestamp` | Preenche automaticamente com a data/hora da **última atualização** do registro. |
-
-### :crown: Anotações de HERANÇA  
-| Anotação | Descrição |
-|----------|-----------|
-| `@MappedSuperclass` | Marca uma classe como superclasse de entidades. Não vira uma tabela, mas suas subclasses herdam seus campos. |
-| `@Inheritance(strategy = InheritanceType.*)` | Define a estratégia de mapeamento de herança para entidades (ex.: `JOINED`, `SINGLE_TABLE`, `TABLE_PER_CLASS`). |
 
 
 
