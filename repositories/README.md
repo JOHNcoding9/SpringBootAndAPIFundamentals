@@ -6,7 +6,8 @@ A camada **Repository** abstrai o acesso de dados. Ele atua como uma **ponte/tú
 manipular entidades sem se preocupar com os detalhes de persistência.
 Ou seja, A camada oculta todo o comportamento necessário para que uma entidade seja salva, consultada, atualizada e removida, **sem que a camada de serviço precise conhecer os mecanismos internos do banco**.
 
-##  Papel do repository na arquitetura: <br>
+#  Papel do repository na arquitetura:
+
 ⚫ isola a lógica de acesso aos dados <br>
 ⚫ facilita testes de manutenção <br>
 ⚫ promove reutilização de código <br>
