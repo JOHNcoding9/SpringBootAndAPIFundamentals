@@ -6,7 +6,7 @@ Data Transfer Object
 A camada **DTO** é um objeto simples, geralmente composto apenas por atributos e métodos de acesso, sendo  utilizados para **transportar dados entre camadas**. O transporte é feito **sem utilizar a lógica de negócio**
 e serve como ** uma interface de comunicação segura e enxuta **.
 
-São separados em:
+São separados em: <br>
 ⚫ RequestDTO <br>
 ⚫ ResponseDTO  <br>
 
@@ -26,7 +26,7 @@ Em resumo, DTOs basicamente filtram as Entidades antes de transportá-las às ou
 # ⚙️ Etapas de validação de uma aplicação
 
 ## 1º Validação Estrutural ( Ralizada na camada de DTO)
-🎯 Objetivos:
+🎯 Objetivos: <br>
 ⚫ Garantir que dados preenchidos têm o formato esperado. <br>
 ⚫ Realizar a validação dos dados (Email existe? CPF existe? ...) <br>
 ⚫ Conferir campos obrigatórios. <br>
@@ -47,7 +47,7 @@ public class UsuarioDTO {
 Essas validações são automáticas com **@Valid** nos Controllers.
 
 ## 2º Validação Semântica ( Ralizada na camada de Serviço)
-🎯 Objetivos:
+🎯 Objetivos: <br>
 ⚫ Validar regras de negócio que dependem do contexto da aplicação. <br>
 ("Email já cadastrado", "Data de nascimento não pode ser 2 anos anteriores ao atual", "Nome de usuário já está em uso" ....)
 
@@ -58,7 +58,7 @@ if (usuarioRepository.existsByEmail(dto.getEmail()) {
 ```
 
 ## 3º Validação de Persistência ( Ralizada no Banco de Dados)
-🎯 Objetivos:
+🎯 Objetivos: <br>
 ⚫ Garantir integridade referencial e unicidade no banco real da aplicação (Postgre, MySQL ...) <br>
 ⚫ Uso  de constraints do banco real: UNIQUE, FOREIGN KEY, PRIMARY KEY ...
 
